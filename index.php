@@ -32,8 +32,8 @@ $cupcakeFlavors = array("grasshopper"=>"The Grasshopper", "maple"=>"Whiskey Mapl
                 </span>-->
             </div>
             <?php
-            foreach ($cupcakeFlavors as $flavor => $cupcake) {
-                echo "<input class='form-check-inline' type='checkbox' name='cupcakes' value='$flavor'=>$cupcake</input>"."<br>";
+            foreach ($cupcakeFlavors as $cupcake => $flavor) {
+                echo "<input class='form-check-inline' type='checkbox' name='cupcake_name[]' value='$cupcake'=>$flavor</input>"."<br>";
             }
             ?>
             <br>
@@ -43,6 +43,56 @@ $cupcakeFlavors = array("grasshopper"=>"The Grasshopper", "maple"=>"Whiskey Mapl
         </fieldset>
     </form>
 </div>
+</div>
+<div class="container">
+    <?php
+    if (isset($_POST['submit'])) {
+        $name = $_POST["yourName"];
+        $cupcake_flavors = $_POST["cupcake_name"];
+        $count = 0;
+
+        /*$name = $_POST["yourName"];
+        //$cupcake_flavors = $_POST["cupcake_name"];
+        $count = 0;*/
+        echo "Thank you, " . $name . ", for your order!";
+        echo "Order Summary:";
+        echo "<br>";
+
+        $isValid = true;
+
+        //Validating first name
+        if (!empty($_POST['yourName'])) {
+            $name = $_POST['yourName'];
+        } else {
+            echo '<p>Please enter your name.</p>';
+            $isValid = false;
+        }
+
+        //validating that atleast one chack box is checked
+        if (!empty($_POST["cupcake_name"])) {
+            $cupcake_flavors = $_POST["cupcake_name"];
+        } else {
+            echo '<p>Please pick cupcakes.</p>';
+            $isValid = false;
+        }
+        foreach ($cupcake_flavors as $cupcake) {
+            if (array_key_exists($cupcake, $cupcakeFlavors)) {
+                echo "<li>" . $cupcakeFlavors["$cupcake"] . "</li>";
+                $count++;
+            } else {
+                echo "<p>Please make a selection</p>";
+                $isValid = false;
+            }
+
+        }
+        if ($isValid) {
+            echo "<h4>Order Total: $" . money_format('%.2n', $count * 3.50) . "</h4>";
+
+        }
+    }
+
+    ?>
+
 </div>
 
 </body>
