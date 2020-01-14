@@ -7,6 +7,7 @@
  * A program that enables a Cupcake Fundraiser to make money
  * through the sale of cupcakes.
  */
+
 //Turn on error reporting -- this is critical
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -50,54 +51,52 @@ $cupcakeFlavors = array("grasshopper"=>"The Grasshopper", "maple"=>"Whiskey Mapl
             </button>
         </fieldset>
     </form>
+
 </div>
 </div>
 <div class="container">
-    <?php
-    $name = $_POST["yourName"];
-    $cupcake_flavors = $_POST["cupcake_name"];
+    <?
+    $name = $_POST['yourName'];
+    $cupcake_names = isset($_POST['cupcake_name']);
     $count = 0;
     if (isset($_POST['submit'])) {
-      $name;
-      $cupcake_flavors;
-      $count;
-    }
-    echo "Thank you, " . $name . ", for your order!";
-    echo "<br>";
-    echo "Order Summary:";
-    echo "<br>";
-
-    $isValid = true;
-
-    //Validating first name
-    if (!empty($_POST['yourName'])) {
         $name = $_POST['yourName'];
-    } else {
-        echo '<p>Please enter your name.</p>';
-        $isValid = false;
+        $cupcake_names = isset($_POST['cupcake_name']);
+        $count = 0;
     }
-
-    //validating that atleast one chack box is checked
-    if (!empty($_POST["cupcake_name"])) {
-        $cupcake_flavors = $_POST["cupcake_name"];
-    } else {
-        echo '<p>Please pick cupcakes.</p>';
-        $isValid = false;
-    }
-    foreach ($cupcake_flavors as $cupcake) {
-        if (array_key_exists($cupcake, $cupcakeFlavors)) {
-            echo "<li>" . $cupcakeFlavors["$cupcake"] . "</li>";
-            $count++;
+        $isValid = true;
+        //Validating name
+        if (!empty($_POST['yourName'])) {
+            $name = $_POST['yourName'];
         } else {
-            echo "<p>Please make a selection</p>";
+            echo '<p>Please enter your name.</p>';
             $isValid = false;
         }
 
-    }
-    if ($isValid) {
-        echo "<h4>Order Total: $" . money_format('%.2n', $count * 3.50) . "</h4>";
+        //validating that atleast one chack box is checked
+        if (!empty($_POST['cupcake_name'])) {
+            $cupcake_names = $_POST['cupcake_name'];
+        } else {
+            echo '<p>Please pick cupcakes.</p>';
+            $isValid = false;
+        }
+        echo "Thank you, " . $name . ", for your order!";
+        echo "<br>";
+        echo "Order Summary:";
+        echo "<br>";
+        foreach ($cupcake_names as $cupcake) {
+            if (array_key_exists("$cupcake", $cupcakeFlavors)) {
+                echo "<li>" . $cupcakeFlavors["$cupcake"] . "</li>";
+                $count++;
+            } else {
+                echo "<p>Please make a selection</p>";
+                $isValid = false;
+            }
+        }
+        if ($isValid) {
+            echo "<h4>Order Total: $" . money_format('%.2n', $count * 3.50) . "</h4>";
 
-    }
+        }
 
     ?>
 
