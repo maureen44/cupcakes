@@ -1,4 +1,12 @@
 <?php
+/***
+ * Maureen Kariuki
+ * 01/13/2020
+ * http://mkariuki.greenriverdev.com/328/cupcakes/
+ *
+ * A program that enables a Cupcake Fundraiser to make money
+ * through the sale of cupcakes.
+ */
 //Turn on error reporting -- this is critical
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -33,7 +41,7 @@ $cupcakeFlavors = array("grasshopper"=>"The Grasshopper", "maple"=>"Whiskey Mapl
             </div>
             <?php
             foreach ($cupcakeFlavors as $cupcake => $flavor) {
-                echo "<input class='form-check-inline' type='checkbox' name='cupcake_name[]' value='$cupcake'=>$flavor</input>"."<br>";
+                echo "<input class='form-check-inline' type='checkbox' name='cupcake_name[]' id='cupcake_name' value='$cupcake'=>$flavor</input>"."<br>";
             }
             ?>
             <br>
@@ -46,49 +54,49 @@ $cupcakeFlavors = array("grasshopper"=>"The Grasshopper", "maple"=>"Whiskey Mapl
 </div>
 <div class="container">
     <?php
+    $name = $_POST["yourName"];
+    $cupcake_flavors = $_POST["cupcake_name"];
+    $count = 0;
     if (isset($_POST['submit'])) {
-        $name = $_POST["yourName"];
+      $name;
+      $cupcake_flavors;
+      $count;
+    }
+    echo "Thank you, " . $name . ", for your order!";
+    echo "<br>";
+    echo "Order Summary:";
+    echo "<br>";
+
+    $isValid = true;
+
+    //Validating first name
+    if (!empty($_POST['yourName'])) {
+        $name = $_POST['yourName'];
+    } else {
+        echo '<p>Please enter your name.</p>';
+        $isValid = false;
+    }
+
+    //validating that atleast one chack box is checked
+    if (!empty($_POST["cupcake_name"])) {
         $cupcake_flavors = $_POST["cupcake_name"];
-        $count = 0;
-
-        /*$name = $_POST["yourName"];
-        //$cupcake_flavors = $_POST["cupcake_name"];
-        $count = 0;*/
-        echo "Thank you, " . $name . ", for your order!";
-        echo "Order Summary:";
-        echo "<br>";
-
-        $isValid = true;
-
-        //Validating first name
-        if (!empty($_POST['yourName'])) {
-            $name = $_POST['yourName'];
+    } else {
+        echo '<p>Please pick cupcakes.</p>';
+        $isValid = false;
+    }
+    foreach ($cupcake_flavors as $cupcake) {
+        if (array_key_exists($cupcake, $cupcakeFlavors)) {
+            echo "<li>" . $cupcakeFlavors["$cupcake"] . "</li>";
+            $count++;
         } else {
-            echo '<p>Please enter your name.</p>';
+            echo "<p>Please make a selection</p>";
             $isValid = false;
         }
 
-        //validating that atleast one chack box is checked
-        if (!empty($_POST["cupcake_name"])) {
-            $cupcake_flavors = $_POST["cupcake_name"];
-        } else {
-            echo '<p>Please pick cupcakes.</p>';
-            $isValid = false;
-        }
-        foreach ($cupcake_flavors as $cupcake) {
-            if (array_key_exists($cupcake, $cupcakeFlavors)) {
-                echo "<li>" . $cupcakeFlavors["$cupcake"] . "</li>";
-                $count++;
-            } else {
-                echo "<p>Please make a selection</p>";
-                $isValid = false;
-            }
+    }
+    if ($isValid) {
+        echo "<h4>Order Total: $" . money_format('%.2n', $count * 3.50) . "</h4>";
 
-        }
-        if ($isValid) {
-            echo "<h4>Order Total: $" . money_format('%.2n', $count * 3.50) . "</h4>";
-
-        }
     }
 
     ?>

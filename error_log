@@ -132,3 +132,9 @@
 [14-Jan-2020 07:56:02 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home3/mkariuki/public_html/328/cupcakes/index.php on line 78
 [14-Jan-2020 07:56:38 UTC] PHP Notice:  Undefined variable: cupcake_flavors in /home3/mkariuki/public_html/328/cupcakes/index.php on line 78
 [14-Jan-2020 07:56:38 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home3/mkariuki/public_html/328/cupcakes/index.php on line 78
+[14-Jan-2020 08:04:43 UTC] PHP Notice:  Undefined index: cupcake_name in /home3/mkariuki/public_html/328/cupcakes/index.php on line 50
+[14-Jan-2020 08:04:43 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home3/mkariuki/public_html/328/cupcakes/index.php on line 78
+[14-Jan-2020 08:05:46 UTC] PHP Notice:  Undefined index: cupcake_name in /home3/mkariuki/public_html/328/cupcakes/index.php on line 50
+[14-Jan-2020 08:05:46 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home3/mkariuki/public_html/328/cupcakes/index.php on line 79
+[14-Jan-2020 08:07:07 UTC] PHP Notice:  Undefined index: cupcake_name in /home3/mkariuki/public_html/328/cupcakes/index.php on line 50
+[14-Jan-2020 08:07:07 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home3/mkariuki/public_html/328/cupcakes/index.php on line 79
