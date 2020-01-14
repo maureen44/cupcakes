@@ -19,6 +19,8 @@ error_reporting(E_ALL);
 <?php
 $cupcakeFlavors = array("grasshopper"=>"The Grasshopper", "maple"=>"Whiskey Maple Bacon","carrot"=>"Carrot Walnut", "caramel"=>"Salted Caramel Cupcake", "velvet"=>"Red Velvet", "lemon"=>"Lemon Drop", "tiramisu"=>"Tiramisu");
 ?>
+<div class="container" id="main">
+    <h1 class="display-5">Cupcake Fundraiser</h1>
 <div class="container">
     <form id="cupcake form" method="post">
         <fieldset class="form-group">
@@ -34,8 +36,13 @@ $cupcakeFlavors = array("grasshopper"=>"The Grasshopper", "maple"=>"Whiskey Mapl
                 echo "<input class='form-check-inline' type='checkbox' name='cupcakes' value='$flavor'=>$cupcake</input>"."<br>";
             }
             ?>
+            <br>
+            <button id="submit" type="submit" class="btn btn-success">
+                Order
+            </button>
         </fieldset>
     </form>
+</div>
 </div>
 
 </body>
